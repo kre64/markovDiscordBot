@@ -1,0 +1,8 @@
+.env
+**/*.txt
+leaderboards.json
+csvfiles/*
+gpt2txt
+__pycache__
+cleanFile.py
+test.py
