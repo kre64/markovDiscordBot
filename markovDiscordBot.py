@@ -3,6 +3,7 @@ import markovify
 import random
 import json
 import sentenceHelpers
+import memeImg
 import threading
 import sys
 import os
@@ -15,6 +16,11 @@ load_dotenv()
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 LOCAL_PATH = os.getenv('LOCAL_PATH')
 
+# init memes
+memer = memeImg.MemeImgs()
+memer.setTemplates()
+
+# init leaderboards
 def getLeaderboards(path):
     leaderboard_file = open(path)
     leaderboard = json.load(leaderboard_file)
@@ -187,7 +193,7 @@ async def leaderboards(ctx):
 
 
 @client.command()
-async def richard(ctx):
+async def ace(ctx):
     sentences = sentenceHelpers.makeSentences(bots['ace']['model'], 200, 4)
     msg = randomSentence(sentences, 0, 50)
 
@@ -262,6 +268,20 @@ async def melv(ctx):
     # updateLake(bots['melv']['path'], msg)
     await ctx.send(msg)
 
+@client.command()
+async def meme(ctx):
+    msss = ctx.message.content
+    targ = msss.split('-meme ', 1)[1]
+
+    sentences = sentenceHelpers.makeSentences(bots[targ]['model'], 200, 5)
+    msg = randomSentence(sentences, 0, 10)
+
+    msg_split = msg.split('> ', 1)
+    user = msg_split[0] + '>'
+    msg = msg_split[1]
+    
+    url = user + " " + memer.makeMeme(msg)
+    await ctx.send(url)
 
 @client.command()
 async def helpme(ctx):

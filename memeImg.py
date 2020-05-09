@@ -1,4 +1,5 @@
 import requests
+import random
 import json
 import os
 
@@ -8,21 +9,72 @@ load_dotenv()
 
 GET_MEMES_URL = os.getenv('GET_MEMES_URL')
 MEMES_USERNAME = os.getenv('MEMES_USERNAME')
+MEMES_PASS = os.getenv('MEMES_PASS')
 
-r = requests.get(url=GET_MEMES_URL)
+# r = requests.get(url=GET_MEMES_URL)
 
-if r.status_code == 200:
-	print(r.json())
+# if r.status_code == 200:
+# 	print(r.json())
 
-def init():
 
 
 class MemeImgs():
 	def __init__(self):
 		self.get_url = 'https://api.imgflip.com/get_memes'
 		self.caption_url = 'https://api.imgflip.com/caption_image'
-		self.username = ''
-		self.password = ''
+		self.template_ids = []
+
+	def setTemplates(self):
+		r = requests.get(url=self.get_url)
+		bleh = []
+		if r.status_code == 200:
+			memes = r.json()['data']['memes']
+			
+			for meme in memes:
+				self.template_ids.append(meme['id'])
+
+	def requestRandom(self, top_text, bottom_text):
+		randnum = random.randint(0, len(self.template_ids))
+
+		data = {
+			'template_id': self.template_ids[randnum],
+			'username': MEMES_USERNAME,
+			'password': MEMES_PASS,
+			'text0': top_text,
+			'text1': bottom_text,
+		}
+
+		r = requests.post(url=self.caption_url, data=data)
+		img = r.json()['data']['url']
+
+		return img
+
+	
+	def makeMeme(self, sentence):
+		words = sentence.split()
+		word_count = len(words)
+
+		first = int(word_count/2)
+
+		top_text = ""
+		bot_text = ""
+
+		for x in range(0, first):
+			top_text += " " + words[x]
+
+		for x in range(first, word_count):
+			bot_text += " " + words[x]
+
+		url = self.requestRandom(top_text, bot_text)
+
+		return url
+			
 
 
-	def request(template_id, top_text, bottom_text)
+
+
+# memer = MemeImgs()
+# memer.setTemplates()
+
+
+# print(memer.makeMeme("I have boomer apm now"))
