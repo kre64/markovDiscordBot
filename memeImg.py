@@ -34,7 +34,7 @@ class MemeImgs():
 				self.template_ids.append(meme['id'])
 
 	def requestRandom(self, top_text, bottom_text):
-		randnum = random.randint(0, len(self.template_ids))
+		randnum = random.randint(0, len(self.template_ids) - 1)
 
 		data = {
 			'template_id': self.template_ids[randnum],
@@ -49,7 +49,7 @@ class MemeImgs():
 
 		return img
 
-	
+	# Cuts sentence in half for top, bottom text of the meme
 	def makeMeme(self, sentence):
 		words = sentence.split()
 		word_count = len(words)
@@ -70,11 +70,6 @@ class MemeImgs():
 		return url
 			
 
-
-
-
+# Example init
 # memer = MemeImgs()
 # memer.setTemplates()
-
-
-# print(memer.makeMeme("I have boomer apm now"))
