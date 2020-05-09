@@ -1,8 +1,18 @@
+# Environment variables, init functions
 .env
+cleanFile.py
+
+# Data used by bot
 **/*.txt
 leaderboards.json
 csvfiles/*
+
+# GPT2 / Machine Learning stuff
+checkpoint_run1.tar
 gpt2txt
+
+# Pycache junk
 __pycache__
-cleanFile.py
+
+# Test files
 test.py
