@@ -10,7 +10,7 @@ csvfiles/*
 # GPT2 / Machine Learning stuff
 checkpoint_run1.tar
 gpt2txt
-aiBot.py
+machineLearningStuff.py
 
 # Pycache junk
 __pycache__
