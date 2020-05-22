@@ -8,9 +8,10 @@ leaderboards.json
 csvfiles/*
 
 # GPT2 / Machine Learning stuff
-checkpoint_run1.tar
+checkpoint.tar
 gpt2txt
 machineLearningStuff.py
+checkpoint
 
 # Pycache junk
 __pycache__
