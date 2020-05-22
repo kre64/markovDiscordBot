@@ -34,3 +34,5 @@ def makeSentences(model, iters, minLength=1):
 	sentences = sorted(sentences, key=lambda x: -x[1]) #(key=lambda x: -x[1])
 
 	return sentences
+
+

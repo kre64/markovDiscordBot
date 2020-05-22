@@ -1,3 +1,6 @@
+# Helper class that makes calls to the imgflip api, feel free to change at will.
+# See main class for basic usage
+
 import requests
 import random
 import json
@@ -11,12 +14,6 @@ GET_MEMES_URL = os.getenv('GET_MEMES_URL')
 MEMES_USERNAME = os.getenv('MEMES_USERNAME')
 MEMES_PASS = os.getenv('MEMES_PASS')
 
-# r = requests.get(url=GET_MEMES_URL)
-
-# if r.status_code == 200:
-# 	print(r.json())
-
-
 
 class MemeImgs():
 	def __init__(self):
@@ -24,6 +21,7 @@ class MemeImgs():
 		self.caption_url = 'https://api.imgflip.com/caption_image'
 		self.template_ids = []
 
+	# calls imgflip api and returns a list of the 100 most used memes in the past day
 	def setTemplates(self):
 		r = requests.get(url=self.get_url)
 		bleh = []
@@ -69,7 +67,3 @@ class MemeImgs():
 
 		return url
 			
-
-# Example init
-# memer = MemeImgs()
-# memer.setTemplates()

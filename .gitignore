@@ -1,6 +1,5 @@
 # Environment variables, init functions
 .env
-cleanFile.py
 
 # Data used by bot
 **/*.txt
