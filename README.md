@@ -4,7 +4,7 @@ Discord chat bot that outputs text from specific users using markov chains via m
 Also outputs markov text as image memes thanks to https://imgflip.com/
 
 # Features  
-*  Pretty realistic depictions of your discord pals
+*  Realistic depictions of your discord pals
 *  Leaderboards
 *  Image memes
   
